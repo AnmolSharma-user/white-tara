@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+/* ===== Design Tokens — Soft Color Palette ===== */
+:root {
+  /* Soft Colors */
+  --sapphire: #1e3a5f;
+  --sapphire-deep: #162d4a;
+  --sapphire-light: #2a5080;
+  --sapphire-glow: rgba(30, 58, 95, 0.3);
+
+  --soft-accent: #6b8db5;
+  --soft-accent-light: #89a8cc;
+  --soft-warm: #c4a87a;
+  --soft-warm-light: #d4bc96;
+
+  --platinum: #e8e6e3;
+  --platinum-light: #f2f1ef;
+
+  --teal-soft: #5a9ea6;
+  --lavender-soft: #8b7eb8;
+
+  --white: #ffffff;
+  --off-white: #f7f8fa;
+  --cream: #faf9f7;
+  --dark: #1a1d23;
+  --dark-card: #1e2330;
+  --dark-section: #141821;
+  --text-primary: #2d3142;
+  --text-secondary: #5d6175;
+  --text-muted: #8e91a0;
+
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg-light: rgba(255, 255, 255, 0.85);
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+
+  /* Typography */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(3.5rem, 7vw, 7rem);
+}
+
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* ===== Glassmorphism ===== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+}
+
+.glass-light {
+  background: var(--glass-bg-light);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 1rem;
+}
+
+/* ===== Glow Effects ===== */
+.glow-sapphire {
+  box-shadow: 0 0 25px rgba(30, 58, 95, 0.2), 0 0 50px rgba(30, 58, 95, 0.08);
+}
+
+/* ===== Gradients ===== */
+.bg-sapphire-gradient {
+  background: linear-gradient(135deg, var(--sapphire-deep) 0%, var(--sapphire) 50%, var(--sapphire-light) 100%);
+}
+
+.bg-dark-gradient {
+  background: linear-gradient(180deg, var(--dark-section) 0%, var(--dark-card) 50%, var(--dark-section) 100%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--soft-warm) 0%, var(--soft-warm-light) 50%, var(--soft-warm) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Section Base ===== */
+.section-padding {
+  padding: var(--section-padding) clamp(1rem, 4vw, 5rem);
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--soft-accent);
+  border-radius: 3px;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--sapphire);
+  color: var(--white);
+}
+
+/* ===== Animations ===== */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(196, 168, 122, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(196, 168, 122, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes scroll-indicator {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ===== Particles ===== */
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ===== Form ===== */
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
+/* ===== Mobile-First Responsive ===== */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 7vw, 2.8rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5.5vw, 2rem) !important;
+  }
+}
